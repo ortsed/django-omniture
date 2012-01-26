@@ -147,8 +147,11 @@ class Omniture(object) :
 		return ""
 
 	def prop21(self):
-		return self.prop19()[0:25] + "|" + self.prop20()[0:25]
-
+		if self.prop20():
+			return "|".join([self.prop19()[0:25], self.prop20()[0:25]])
+		else:
+			return self.prop19()
+			
 	def prop22(self):
 		return ""
 
