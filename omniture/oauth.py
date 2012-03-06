@@ -3,7 +3,21 @@ import hashlib
 import base64
 from datetime import datetime, timedelta
 
-class OAuth():
+class OAuth_REST():
+	"""
+	Class to create Oauth variables for REST calls to Omniture API 
+	Sample use: 
+		oauth = OAuth(OWS_USERNAME, OWS_SECRET)
+		params = {}
+		f = httplib.HTTPSConnection(OMNITURE_DOMAIN, 443)
+		f.request(
+			"POST", 
+			"/admin/1.2/rest/?method=METHOD_NAME?", 
+			json.dumps(params),
+			oauth.header
+		)
+	
+	"""
 	def __init__(self, username, secret):
 		self.username = username
 		self.secret = secret
