@@ -135,7 +135,7 @@ class Omniture(object) :
 		return self.title
 
 	def prop18(self):
-		if self.date != "":
+		if self.date:
 			return self.date.strftime("%B %d, %Y %I:%M %p").lower()
 		else:
 			return self.date
