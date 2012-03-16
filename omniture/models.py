@@ -17,7 +17,8 @@ class Omniture(object) :
 		"site_format" : "",
 		"media_type" : "regular",
 		"tags": "",
-		"section_slug":""
+		"section_slug":"",
+        "oref": "",
 	}
 
 	def __init__(self, section_slug=None, **kwargs):
@@ -120,7 +121,7 @@ class Omniture(object) :
 		return ""
 	
 	def prop14(self):
-		return ""
+		return self.oref
 		
 	def prop15(self):
 		return self.format(self.author)
