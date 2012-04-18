@@ -3,7 +3,7 @@ from django.conf import settings
 from datetime import datetime
 
 class Omniture(object) :
-	
+
 	defaults = {
 		"debug" : False,
 		"site" : "",
@@ -21,6 +21,7 @@ class Omniture(object) :
 		"tags": "",
 		"section_slug":"",
         "oref": "",
+
 	}
 
 	def __init__(self, section_slug=None, **kwargs):
@@ -93,7 +94,7 @@ class Omniture(object) :
 	
 	def prop2(self):
 		return self.search_results_count
-	
+
 	def prop3(self):
 		return self.conjoin([self.title, self.section, self.author])
 		
@@ -138,7 +139,7 @@ class Omniture(object) :
 	
 	def prop14(self):
 		return self.oref
-		
+	
 	def prop15(self):
 		return self.format(self.author)
 
