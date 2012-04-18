@@ -1,8 +1,9 @@
 import re
 from django.conf import settings
+from datetime import datetime
 
 class Omniture(object) :
-
+	
 	defaults = {
 		"debug" : False,
 		"site" : "",
@@ -14,6 +15,7 @@ class Omniture(object) :
 		"type" : "misc",
 		"author" : "",
 		"search_terms" : "",
+		"search_results_count": 0,
 		"site_format" : "",
 		"media_type" : "regular",
 		"tags": "",
@@ -39,6 +41,12 @@ class Omniture(object) :
 		"""
 		return self.defaults[name]
 
+	def __getattribute__(self, name):
+		try:
+			return object.__getattribute__(self, name)
+		except:
+			return ""
+			
 	#Utility functions 
 	def format(self, text):
 
@@ -69,7 +77,6 @@ class Omniture(object) :
 
 	def landing(self):
 		self.type = "landing"
-		return ""
 
 	# Getter functions
 	def channel(self):
@@ -82,10 +89,10 @@ class Omniture(object) :
 		return self.conjoin([self.title, self.section, self.author])
 
 	def prop1(self):
-		return ""
+		return self.search_terms
 	
 	def prop2(self):
-		return ""
+		return self.search_results_count
 	
 	def prop3(self):
 		return self.conjoin([self.title, self.section, self.author])
@@ -112,13 +119,22 @@ class Omniture(object) :
 		return ""
 		
 	def prop11(self):
-		return ""
-	
+		if isinstance(self.date, datetime):
+			return self.date.strftime("%H:00")
+		else:
+			return self.date
+			
 	def prop12(self):
-		return ""
-
+		if isinstance(self.date, datetime):
+			return self.date.strftime("%A")
+		else:
+			return self.date
+			
 	def prop13(self):
-		return ""
+		if isinstance(self.date, datetime) and self.date.strftime("%w") > 4:
+			return "weekend"
+		else:
+			return "weekday"
 	
 	def prop14(self):
 		return self.oref
@@ -136,7 +152,7 @@ class Omniture(object) :
 		return self.title
 
 	def prop18(self):
-		if self.date:
+		if isinstance(self.date, datetime):
 			return self.date.strftime("%B %d, %Y %I:%M %p").lower()
 		else:
 			return self.date
