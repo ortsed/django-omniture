@@ -21,6 +21,7 @@ class Omniture(object) :
 		"tags": "",
 		"section_slug":"",
         "oref": "",
+        
 
 	}
 
