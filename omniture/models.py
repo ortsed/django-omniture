@@ -21,8 +21,8 @@ class Omniture(object) :
 		"tags": "",
 		"section_slug":"",
         "oref": "",
-        "omniture_domain":"122.2o7.net",
-        "account": "",
+		"omniture_domain":"122.2o7.net",
+		"account": "",
 	}
 
 	def __init__(self, section_slug=None, **kwargs):
